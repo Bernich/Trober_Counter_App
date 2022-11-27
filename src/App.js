@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
 
+import { Fragment ,useState,useEffect} from 'react';
+import './App.css';
+import Controller from './components/Controller/Controller';
+import Pulsing from './components/LoadingPulsing/Pulsing';
+
+// A simple counter app by ACHEAMPONG BERNARDO (SOFTWARE ASSOCIATE)
 function App() {
+
+const [over, setOver] = useState(false)
+
+useEffect(() => {
+  setTimeout(() => {
+    setOver(true)
+  }, 5000);
+}, [])
+
+
+
+
+
+let content = over ?  <Controller/> :<Pulsing/> 
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <Fragment>
+ {content}
+
+   </Fragment>
   );
 }
 
